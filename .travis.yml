@@ -20,13 +20,13 @@ jobs:
     deploy:
       provider: releases
       api_key: $GITHUB_OAUTH_TOKEN
-      file: "build/libs/mediabase-1.0-SNAPSHOT.war"
+      file: "applications/mediabase/build/libs/mediabase-1.0-SNAPSHOT.war"
       skip_cleanup: true
   - stage: deploy to test
     language: java
     script:
     - echo "Downloading $RELEASE_TAG"
-    - wget -P build/libs https://github.com/$GITHUB_USERNAME/mediabase/releases/download/$RELEASE_TAG/mediabase-1.0-SNAPSHOT.war
+    - wget -P applications/mediabase/build/libs https://github.com/$GITHUB_USERNAME/mediabase/releases/download/$RELEASE_TAG/mediabase-1.0-SNAPSHOT.war
     before_deploy:
     - echo "Deploying $RELEASE_TAG to test"
     deploy:
