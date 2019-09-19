@@ -3,37 +3,42 @@ sudo: false
 notifications:
   email: false
 env:
-- RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
+  - RELEASE_TAG="release-$TRAVIS_BUILD_NUMBER"
 if: tag IS blank
 
 jobs:
   include:
-  - stage: build and release to github
-    language: java
-    jdk: oraclejdk8
-    install: skip
-    script: ./gradlew clean build -x test
-    before_deploy:
-    - git config --local user.name "Build Bot"
-    - git config --local user.email "buildbot@example.com"
-    - git tag -f $RELEASE_TAG
-    deploy:
-      provider: releases
-      api_key: $GITHUB_OAUTH_TOKEN
-      file: "applications/mediabase/build/libs/mediabase-1.0-SNAPSHOT.war"
-      skip_cleanup: true
-  - stage: deploy to test
-    language: java
-    script:
-    - echo "Downloading $RELEASE_TAG"
-    - wget -P applications/mediabase/build/libs https://github.com/$GITHUB_USERNAME/mediabase/releases/download/$RELEASE_TAG/mediabase-1.0-SNAPSHOT.war
-    before_deploy:
-    - echo "Deploying $RELEASE_TAG to test"
-    deploy:
-      provider: cloudfoundry
-      api: $CF_API_URL
-      username: $CF_USERNAME
-      password: $CF_PASSWORD
-      organization: $CF_ORG
-      space: test
-      skip_ssl_validation: true
+    - stage: build and release to github
+      language: java
+      jdk: oraclejdk8
+      install: skip
+      script: ./gradlew clean build -x test
+      before_deploy:
+        - git config --local user.name "Build Bot"
+        - git config --local user.email "buildbot@example.com"
+        - git tag -f $RELEASE_TAG
+      deploy:
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
+        file:
+          - "applications/mediabase/build/libs/mediabase-1.0-SNAPSHOT.war"
+          - "applications/movies-ms/build/libs/movies-ms-1.0-SNAPSHOT.jar"
+          - "applications/podcasts-ms/build/libs/podcasts-ms-1.0-SNAPSHOT.jar"
+        skip_cleanup: true
+    - stage: deploy to test
+      language: java
+      script:
+        - echo "Downloading $RELEASE_TAG"
+        - wget -P applications/mediabase/build/libs https://github.com/$GITHUB_USERNAME/mediabase/releases/download/$RELEASE_TAG/mediabase-1.0-SNAPSHOT.war
+        - wget -P applications/movies-ms/build/libs https://github.com/$GITHUB_USERNAME/mediabase/releases/download/$RELEASE_TAG/movies-ms-1.0-SNAPSHOT.jar
+        - wget -P applications/podcasts-ms/build/libs https://github.com/$GITHUB_USERNAME/mediabase/releases/download/$RELEASE_TAG/podcasts-ms-1.0-SNAPSHOT.jar
+      before_deploy:
+        - echo "Deploying $RELEASE_TAG to test"
+      deploy:
+        provider: cloudfoundry
+        api: $CF_API_URL
+        username: $CF_USERNAME
+        password: $CF_PASSWORD
+        organization: $CF_ORG
+        space: test
+        skip_ssl_validation: true

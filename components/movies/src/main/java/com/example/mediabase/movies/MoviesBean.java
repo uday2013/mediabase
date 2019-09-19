@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.mediabase.movie;
+package com.example.mediabase.movies;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,5 +114,6 @@ public class MoviesBean {
     @Transactional
     public void clean() {
         entityManager.createQuery("delete from Movie").executeUpdate();
+        //entityManager.createQuery("delete from com.example.mediabase.movie.Movie").executeUpdate();
     }
 }

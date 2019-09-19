@@ -7,6 +7,7 @@ group 'com.example'
 version '1.0-SNAPSHOT'
 
 dependencies {
+    compile project(":components:ui")
     compile('taglibs:standard:1.1.2')
     compile('javax.servlet:jstl:1.2')
     compile('org.apache.tomee:javaee-api:7.0')
@@ -14,14 +15,12 @@ dependencies {
     compile('org.apache.geronimo.specs:geronimo-osgi-locator:1.1')
     compile('org.apache.geronimo.components:geronimo-jaspi:2.0.0')
 
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+   // compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-tomcat')
-    compile('mysql:mysql-connector-java:5.1.46')
+    //compile('mysql:mysql-connector-java:5.1.46')
     compile('commons-lang:commons-lang:2.4')
-    compile project(":components:movies")
     compile('taglibs:standard:1.1.2')
-    compile project(":components:podcasts")
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
