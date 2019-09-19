@@ -1,5 +1,6 @@
 spring:
-
+  application:
+    name: mediabase
   mvc.view:
     prefix: /WEB-INF/
     suffix: .jsp
@@ -7,5 +8,6 @@ spring:
 logging.level:
   root: WARN
 
-movies.ms.url: http://localhost:8081/movies
-podcasts.ms.url: http://localhost:8082/podcasts
+
+
+

@@ -10,6 +10,19 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     }
+
+    ext {
+        // ...
+        SCSClientStartersVersion = "1.6.6.RELEASE"
+        SCVersion = "Edgware.RELEASE"
+        // ...
+    }
+    //...
+
+    dependencies {
+        classpath('io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE')
+        // ...
+    }
 }
 
 

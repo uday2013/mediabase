@@ -35,7 +35,7 @@ public class MovieClient {
     }
 
     public int count(String field, String key) {
-        String URI = UriComponentsBuilder.fromHttpUrl(moviesURL + "/count")
+        String URI = UriComponentsBuilder.fromUriString(moviesURL + "/count")
                 .queryParam("field", field)
                 .queryParam("key", key)
                 .build().toUriString();
