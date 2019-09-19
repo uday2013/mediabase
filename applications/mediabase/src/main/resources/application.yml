@@ -7,6 +7,15 @@ spring:
 
 logging.level:
   root: WARN
+  com.example.mediabase.podcastui: DEBUG
+
+  hystrix:
+    command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 5000
 
 
 

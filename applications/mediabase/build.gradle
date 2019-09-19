@@ -30,8 +30,9 @@ dependencies {
     compile('commons-lang:commons-lang:2.4')
     //compile('taglibs:standard:1.1.2')
     compile('io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry')
-
+    compile('io.pivotal.spring.cloud:spring-cloud-services-starter-circuit-breaker')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
 
 
 
