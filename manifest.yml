@@ -7,6 +7,9 @@ applications:
     services:
       - movies-ms-database
       - service-registry
+      - mediabase-sso
+    env:
+      GRANT_TYPE: client_credentials
   - name: podcasts-ms
     path: applications/podcasts-ms/build/libs/podcasts-ms-1.0-SNAPSHOT.jar
     routes:
@@ -14,6 +17,9 @@ applications:
     services:
       - podcasts-ms-database
       - service-registry
+      - mediabase-sso
+    env:
+      GRANT_TYPE: client_credentials
   - name: mediabase
     path: applications/mediabase/build/libs/mediabase-1.0-SNAPSHOT.war
     routes:
@@ -21,4 +27,5 @@ applications:
     services:
       - service-registry
       - circuit-breaker
+      - mediabase-sso
 
